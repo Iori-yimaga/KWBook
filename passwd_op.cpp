@@ -5,6 +5,7 @@
 #include <string.h>
 #include <memory.h>
 #include <conio.h>
+#include "secData.h"
 
 int g_Count = 0;
 USERINFO myinfo = { 0 };
@@ -85,6 +86,9 @@ void addPasswd() {
 	}
 	myinfo.passWord[index] = '\0';
 
+	//加密数据
+	encryptData(myinfo.passWord);
+
 	// 写入数据
 	if (fprintf(fp, "%d\t%s\t%s\t%s\n", myinfo.ID, myinfo.webSite, myinfo.userName, myinfo.passWord)) {
 		printf("\n写入成功！\n");
@@ -150,6 +154,9 @@ void changePasswd() {
 
 	strcpy_s((pMyInfo + num - 1)->passWord, 20, arr);
 	for (int i = 0; i < g_Count; i++) {
+		// 加密密码
+		encryptData((pMyInfo + i)->passWord);
+
 		fprintf(fp, "%d\t%s\t%s\t%s\n", (pMyInfo + i)->ID, (pMyInfo + i)->webSite, (pMyInfo + i)->userName, (pMyInfo + i)->passWord);
 	}
 	printf("修改成功！\n");
@@ -179,9 +186,10 @@ void queryPasswd() {
 	PUSERINFO pMyInfo = (PUSERINFO)malloc(g_Count * sizeof(USERINFO));
 	for (int i = 0; i < g_Count; i++) {
 		fscanf_s(fp, "%d\t%s\t%s\t%s\n", &(pMyInfo + i)->ID, (pMyInfo + i)->webSite, 20, (pMyInfo + i)->userName, 20, (pMyInfo + i)->passWord, 20);
+		decryptData((pMyInfo + i)->passWord);
 	}
 	// 判断用户输入数字的界限
-	if (num > 0 && num < g_Count) {
+	if (num > 0 && num <= g_Count) {
 		printf("%d\t%s\t%s\t%s\n", (pMyInfo + num - 1)->ID, (pMyInfo + num - 1)->webSite, (pMyInfo + num - 1)->userName, (pMyInfo + num - 1)->passWord);
 	}
 	else {
@@ -209,6 +217,7 @@ void removePasswd() {
 	PUSERINFO pMyInfo = (PUSERINFO)malloc(g_Count * sizeof(USERINFO));
 	for (int i = 0; i < g_Count; i++) {
 		fscanf_s(fp, "%d\t%s\t%s\t%s\n", &(pMyInfo + i)->ID, (pMyInfo + i)->webSite, 20, (pMyInfo + i)->userName, 20, (pMyInfo + i)->passWord, 20);
+		decryptData((pMyInfo + i)->passWord);
 	}
 	fclose(fp);
 

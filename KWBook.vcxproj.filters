@@ -30,6 +30,9 @@
     <ClCompile Include="permissionCheck.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="secData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
@@ -45,6 +48,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="permissionCheck.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="secData.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

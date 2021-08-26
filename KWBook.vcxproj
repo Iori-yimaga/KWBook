@@ -144,6 +144,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="passwd_op.cpp" />
     <ClCompile Include="permissionCheck.cpp" />
+    <ClCompile Include="secData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globalVals.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="passwd_op.h" />
     <ClInclude Include="permissionCheck.h" />
+    <ClInclude Include="secData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
